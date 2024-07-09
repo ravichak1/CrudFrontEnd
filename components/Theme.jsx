@@ -2,11 +2,10 @@ import { useContext } from "react";
 import { MyContext } from "./../src/App";
 
 function Theme() {
-  const { changeTheme , theme} = useContext(MyContext);
-  
-  
+  const { changeTheme, theme } = useContext(MyContext);
+
   return (
-    <div>
+    <div className="absolute top-0 left-0">
       <button
         className="theme-toggle"
         id="theme-toggle"

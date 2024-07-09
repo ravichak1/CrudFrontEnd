@@ -27,10 +27,9 @@ function App() {
   return (
     <>
       <MyContext.Provider value={contextValues}>
-        <div style={style}>
+        <div style={style} className="h-[100dvh]">
           <Theme />
           <Navbar />
-
           <Routes>
             <Route element={<IsLoggedOut />}>
               <Route path="/signup" element={<SignupPage />} />
