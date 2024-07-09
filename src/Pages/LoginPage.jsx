@@ -22,7 +22,6 @@ function LoginPage() {
     event.preventDefault();
     try {
       const response = await service.post("/login", formData);
-      console.log(response);
 
       if (response.status === 200) {
         storeToken(response.data.accesstoken);

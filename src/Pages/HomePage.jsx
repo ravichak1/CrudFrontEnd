@@ -1,48 +1,37 @@
 // src/components/HomePage.js
 import React, { useContext } from "react";
 import { useNavigate } from "react-router";
-import service from "./../service/api";
 import { AuthContext } from "./../context/AuthContextWrapper";
+import HomePageSub from "../components/HomePageSub";
+import service from "../service/api";
 
 function HomePage() {
-  const { user, removeToken, removeUserId } = useContext(AuthContext);
-  const data = user.user;
+  const { user, removeToken, removeUserId, disconnect } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
-  // Assuming removeToken and removeUserId are defined elsewhere in your code
+  const handleDelete = () => {
+    service
+      .delete(`/user/${user.user._id}`)
+      .then(() => {
+        // Call removeToken, removeUserId, and disconnect to clear user data and session
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    try {
-      const response = await service.delete(data._id);
-
-      if (response) {
-        removeToken();
-        removeUserId();
-        navigate("/login");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
+        disconnect();
+        navigate(`/signup`);
+      })
+      .catch((error) => {
+        console.log(error);
+        // Optionally, show an error message to the user
+        alert("Failed to delete the user. Please try again.");
+      });
+  };
 
   return (
     <div>
-      <h1>{data.name}</h1>
-      <img
-        src={data.image}
-        alt="User Profile"
-        style={{ borderRadius: "50%", width: 100 }}
-      />
-      <h4>{data.age}</h4>
-      <h4>{data.height}cm</h4>
-      <h4>{data.weight}kg</h4>
-      <h4>{data.gender}</h4>
-      <h4>Total calories Burned: {user.totalCaloriesBurnt}</h4>
-      <h4>Total workouts: {user.totalworkouts}</h4>
+      <HomePageSub />
       <button
         className="bg-red-500 text-white p-2 rounded"
-        onClick={handleSubmit}
+        onClick={handleDelete}
       >
         Delete User
       </button>

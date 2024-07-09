@@ -27,7 +27,7 @@ function App() {
   return (
     <>
       <MyContext.Provider value={contextValues}>
-        <div style={style} className="h-[100dvh] flex">
+        <div style={style} className="h-[100dvh]">
           <Theme />
           <Navbar />
           <Routes>

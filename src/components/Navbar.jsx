@@ -6,10 +6,10 @@ function Navbar() {
   const { user, isLoggedIn, disconnect } = useContext(AuthContext);
   //   const users = user.user;
   return (
-    <header className="flex">
-      <h1 className="text-red-700">Fitness Freak</h1>
+    <header className="flex justify-between px-4">
+      <h1 className="text-red-700 text-2xl">Fitness Freak</h1>
       <nav>
-        <ul className="flex">
+        <ul className="flex gap-4">
           <li>
             <NavLink to="/">HomePage</NavLink>
           </li>
