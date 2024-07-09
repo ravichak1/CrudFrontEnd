@@ -2,14 +2,14 @@ import { createContext, useState } from "react";
 
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import IsLoggedOut from "./../components/Routing/IsLoggedOut";
-import IsLoggedIn from "./../components/Routing/IsLoggedIn";
-import SignupPage from "../Pages/SignupPage";
-import LoginPage from "../Pages/LoginPage";
+import Navbar from "./components/Navbar";
+import IsLoggedOut from "./components/Routing/IsLoggedOut";
+import IsLoggedIn from "./components/Routing/IsLoggedIn";
+import SignupPage from "./Pages/SignupPage";
+import LoginPage from "./Pages/LoginPage";
 
-import Theme from "./../components/Theme";
-import HomePage from "../Pages/HomePage";
+import Theme from "./components/Theme";
+import HomePage from "./Pages/HomePage";
 export const MyContext = createContext();
 function App() {
   const [theme, setTheme] = useState("dark");
@@ -27,7 +27,7 @@ function App() {
   return (
     <>
       <MyContext.Provider value={contextValues}>
-        <div style={style} className="h-[100dvh]">
+        <div style={style} className="h-[100dvh] flex">
           <Theme />
           <Navbar />
           <Routes>

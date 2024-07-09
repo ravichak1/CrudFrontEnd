@@ -1,7 +1,7 @@
 // Updated AuthContextWrapper.jsx
 
 import { createContext, useState, useEffect, useCallback } from "react";
-import service from "../service/api";
+import service from "./../service/api";
 export const AuthContext = createContext();
 
 function AuthContextWrapper({ children }) {
