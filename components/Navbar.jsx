@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 function Navbar() {
   const { user, isLoggedIn, disconnect } = useContext(AuthContext);
-  console.log(user);
+  const username = user.username;
   return (
     <nav>
       <ul>
@@ -26,7 +26,7 @@ function Navbar() {
               <button onClick={disconnect}>Logout</button>
             </li>
             <li>
-              <p>Welcome back {user.username}</p>
+              <p>Welcome back {username}</p>
             </li>
             <li>
               <NavLink to={"/create"}>Create activity</NavLink>
