@@ -26,7 +26,7 @@ function Navbar() {
               <button onClick={disconnect}>Logout</button>
             </li>
             <li>
-              <p>Welcome back {userusername}</p>
+              <p>Welcome back {user.username}</p>
             </li>
             <li>
               <NavLink to={"/create"}>Create activity</NavLink>
