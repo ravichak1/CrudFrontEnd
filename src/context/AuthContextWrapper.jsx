@@ -53,7 +53,7 @@ function AuthContextWrapper({ children }) {
     } catch (error) {
         console.error("Failed to fetch activities:", error);
     }
-}, []);
+}, [user]);
 
   useEffect(() => {
     authenticateUser();

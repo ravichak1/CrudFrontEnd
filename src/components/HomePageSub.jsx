@@ -2,19 +2,37 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContextWrapper";
 import {FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { TextField } from "@mui/material";
 import { faCamera } from '@fortawesome/free-solid-svg-icons'; // Import specific icons
+import Popup from "reactjs-popup";
 function HomePageSub() {
-  const { user } = useContext(AuthContext);
+  const { user,activities } = useContext(AuthContext);
   const data = user.user;
+  const workout= user.workoutList
   console.log(user);
+  console.log(user.workoutList)
   const lastWorkout=user.workoutList.length-1
   console.log(lastWorkout)
+  const lastActivity=workout[lastWorkout]
+console.log(lastActivity)
   return (
-    <div>
+    <div className="border-2 w-[max-content] p-4 text-center">
       <div className="relative h-[90px] w-[90px]">
-      <Link to={"/image"}  className="absolute bottom-0 right-0">
+        <Popup trigger={<button  className="absolute bottom-0 right-0">
       <FontAwesomeIcon icon={faCamera} />
-      </Link>
+      </button>}>
+      <TextField
+            type="file"
+            variant="outlined"
+            label=""
+            name="image"
+           
+            fullWidth
+            required
+            sx={{ mb: 4 }}
+          />
+          <button type="submit">Submit</button>
+      </Popup>
       <img
         src={data.image}
         alt=""
@@ -24,7 +42,7 @@ function HomePageSub() {
       
       <h3>{data.name}</h3>
       <h4>{user.totalWorkouts}</h4>
-      <h4>{user.workoutList[lastWorkout]}</h4>
+        <h4>{lastActivity}</h4>
     </div>
   );
 }

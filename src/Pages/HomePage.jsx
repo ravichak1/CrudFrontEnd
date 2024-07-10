@@ -28,25 +28,32 @@ function HomePage() {
   };
 
   return (
-    <div>
-      
+    <div className="grid grid-cols-4">
+      <div className="grid-cols-3">
+
       <HomePageSub />
+      </div>
      
-        
+        <div className="col-start-4">
+
       <button
         className="bg-red-500 text-white p-2 rounded"
         onClick={handleDelete}
-      >
+        >
         Delete User
       </button>
+        </div>
+        <div className="col-start-2 col-end-4 row-start-1">
+
       <h2>Activities</h2>
             <ul>
                 {activities.map((activity) => (
-                    <li key={activity._id}>
-                        {activity.type} - {activity.duration} mins- {activity.calories} calories
+                  <li key={activity._id}>
+                      {activity.type} - {activity.duration} mins- {activity.calories} calories
                     </li>
                 ))}
             </ul>
+                </div>
     </div>
   );
 }

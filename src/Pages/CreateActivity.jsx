@@ -31,6 +31,7 @@ function CreateActivity() {
             if(response.status===200){
                 setTimeout(()=>{
                     navigate("/")
+                    fetchActivities()
                 },100)
             }
         } catch (error) {
