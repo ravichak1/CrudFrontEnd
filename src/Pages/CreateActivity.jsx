@@ -3,7 +3,7 @@ import service from '../service/api'
 import { useNavigate } from 'react-router'
 import { AuthContext } from '../context/AuthContextWrapper'
 function CreateActivity() {
-    const{user}=useContext(AuthContext)
+    const{user, fetchActivities}=useContext(AuthContext)
     const [formData,setFormData]=useState({
         type:"",
         duration:0,

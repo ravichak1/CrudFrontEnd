@@ -10,6 +10,7 @@ import LoginPage from "./Pages/LoginPage";
 import CreateActivity from "./Pages/CreateActivity"
 import Theme from "./components/Theme";
 import HomePage from "./Pages/HomePage";
+import LogoutHomePage from "./Pages/LogoutHomePage";
 export const MyContext = createContext();
 function App() {
   const [theme, setTheme] = useState("dark");
@@ -27,13 +28,14 @@ function App() {
   return (
     <>
       <MyContext.Provider value={contextValues}>
-        <div style={style} className="h-[100dvh]">
-          <Theme />
+        <div  className="h-[100dvh]">
+          
           <Navbar />
           <Routes>
             <Route element={<IsLoggedOut />}>
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/login" element={<LoginPage />} />
+       
             </Route>
 
             <Route element={<IsLoggedIn />}>

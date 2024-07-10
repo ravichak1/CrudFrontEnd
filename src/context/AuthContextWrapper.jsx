@@ -8,12 +8,13 @@ function AuthContextWrapper({ children }) {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [activities,setActivities] = useState([])
 
   const storeToken = (token) => localStorage.setItem("authtoken", token);
   const storeUserId = (userId) => localStorage.setItem("userid", userId);
   const removeToken = () => localStorage.removeItem("authtoken");
   const removeUserId = () => localStorage.removeItem("userid");
-
+  
   const authenticateUser = useCallback(async () => {
     try {
       const token = localStorage.getItem("authtoken");
@@ -34,6 +35,7 @@ function AuthContextWrapper({ children }) {
       setUser(response.data);
       setIsLoading(false);
       setIsLoggedIn(true);
+      
     } catch (error) {
       setUser(null);
       setIsLoading(false);
@@ -42,9 +44,26 @@ function AuthContextWrapper({ children }) {
     }
   }, []);
 
+  const fetchActivities = useCallback(async () => {
+    try {
+        const userId = localStorage.getItem("userid");
+        const response = await service.get(`/${userId}/activity`);
+        setActivities(response.data); // Assuming the response contains activities
+        console.log(response.data)
+    } catch (error) {
+        console.error("Failed to fetch activities:", error);
+    }
+}, []);
+
   useEffect(() => {
     authenticateUser();
   }, [authenticateUser]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+        fetchActivities();
+    }
+}, [isLoggedIn, fetchActivities]);
 
   function disconnect() {
     removeToken();
@@ -54,21 +73,23 @@ function AuthContextWrapper({ children }) {
 
   const contextValues = {
     user,
+    activities, // Provide activities state
     storeToken,
-    storeUserId,
+    storeUserId, // Provide function to store user ID
     removeToken,
-    removeUserId,
+    removeUserId, // Provide function to remove user ID
     authenticateUser,
+    fetchActivities, // Provide function to fetch activities
     isLoading,
     isLoggedIn,
     disconnect,
-  };
+};
 
-  return (
+return (
     <AuthContext.Provider value={contextValues}>
-      {!isLoading && children}
+        {!isLoading && children}
     </AuthContext.Provider>
-  );
+);
 }
 
 export default AuthContextWrapper;
