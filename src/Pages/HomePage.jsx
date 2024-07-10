@@ -5,6 +5,8 @@ import { AuthContext } from "./../context/AuthContextWrapper";
 import HomePageSub from "../components/HomePageSub";
 import service from "../service/api";
 import Searchbar from "../components/Searchbar";
+import AllUsers from "../components/AllUsers";
+
 
 function HomePage() {
   const { user, removeToken, removeUserId, disconnect ,activities} =
@@ -29,6 +31,7 @@ function HomePage() {
 
   return (
     <div className="grid grid-cols-4">
+      
       <div className="grid-cols-3">
 
       <HomePageSub />
@@ -43,17 +46,20 @@ function HomePage() {
         Delete User
       </button>
         </div>
-        <div className="col-start-2 col-end-4 row-start-1">
-
+        
+      <div className="col-start-2 col-end-4 row-start-1">
       <h2>Activities</h2>
-            <ul>
-                {activities.map((activity) => (
-                  <li key={activity._id}>
-                      {activity.type} - {activity.duration} mins- {activity.calories} calories
-                    </li>
-                ))}
-            </ul>
-                </div>
+        <ul>
+            {activities.map((activity) => (
+              <li key={activity._id}>
+                  {activity.type} - {activity.duration} mins- {activity.calories} calories
+                </li>
+            ))}
+        </ul>
+      </div>
+      <div className="col-start-1 col-end-4">
+        <AllUsers/>
+      </div>
     </div>
   );
 }

@@ -35,7 +35,7 @@ function App() {
             <Route element={<IsLoggedOut />}>
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/login" element={<LoginPage />} />
-       
+        
             </Route>
 
             <Route element={<IsLoggedIn />}>

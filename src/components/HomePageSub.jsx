@@ -10,11 +10,11 @@ function HomePageSub() {
   const data = user.user;
   const workout= user.workoutList
   console.log(user);
-  console.log(user.workoutList)
+  
   const lastWorkout=user.workoutList.length-1
-  console.log(lastWorkout)
+
   const lastActivity=workout[lastWorkout]
-console.log(lastActivity)
+
   return (
     <div className="border-2 w-[max-content] p-4 text-center">
       <div className="relative h-[90px] w-[90px]">
@@ -43,6 +43,9 @@ console.log(lastActivity)
       <h3>{data.name}</h3>
       <h4>{user.totalWorkouts}</h4>
         <h4>{lastActivity}</h4>
+        <h4>Following: {data.following.length}</h4>
+        <h4>Followers: {data.followers.length}</h4>
+
     </div>
   );
 }
