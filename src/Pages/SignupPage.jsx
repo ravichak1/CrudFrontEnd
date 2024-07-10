@@ -29,7 +29,7 @@ function SignupPage() {
 
   function handleChange(event) {
     const value = event.target.value;
-    const key = event.target.name; // Change from id to name
+    const key = event.target.id; // Change from id to name
     setFormData({ ...formData, [key]: value });
   }
 
@@ -62,120 +62,86 @@ function SignupPage() {
   } = formData;
   return (
     <>
-      <React.Fragment>
-        <h2>Register Form</h2>
-        <form onSubmit={handleSubmit}>
-          <Stack spacing={2} direction="row" sx={{ marginBottom: 4 }}>
-            <TextField
-              type="text"
-              variant="outlined"
-              label="Name"
-              name="name"
-              onChange={handleChange}
-              value={name}
-              fullWidth
-              required
-            />
-            <TextField
-              type="text"
-              variant="outlined"
-              label="Username"
-              name="username"
-              onChange={handleChange}
-              value={username}
-              fullWidth
-              required
-            />
-          </Stack>
-          <TextField
-            type="email"
-            variant="outlined"
-            label="Email"
-            name="email"
-            onChange={handleChange}
-            value={email}
-            fullWidth
-            required
-            sx={{ mb: 4 }}
-          />
-          <TextField
-            type="password"
-            variant="outlined"
-            label="Password"
-            name="password"
-            onChange={handleChange}
-            value={password}
-            required
-            fullWidth
-            sx={{ mb: 4 }}
-          />
-          <TextField
-            type="text"
-            variant="outlined"
-            label="Profile Image"
-            name="image"
-            onChange={handleChange}
-            value={image}
-            fullWidth
-            required
-            sx={{ mb: 4 }}
-          />
-          <TextField
-            type="number"
-            variant="outlined"
-            label="Age"
-            name="age"
-            onChange={handleChange}
-            value={age}
-            fullWidth
-            required
-            sx={{ mb: 4 }}
-          />
-          <TextField
-            type="number"
-            variant="outlined"
-            label="Height in cm"
-            name="height"
-            onChange={handleChange}
-            value={height}
-            fullWidth
-            required
-            sx={{ mb: 4 }}
-          />
-          <TextField
-            type="number"
-            variant="outlined"
-            label="Weight in kg"
-            name="weight"
-            onChange={handleChange}
-            value={weight}
-            fullWidth
-            required
-            sx={{ mb: 4 }}
-          />
-          <FormControl fullWidth variant="outlined" sx={{ mb: 4 }}>
-            <InputLabel id="gender-label">Gender</InputLabel>
-            <Select
-              labelId="gender-label"
-              name="gender"
-              value={gender}
-              onChange={handleChange}
-              label="Gender"
-              required
-            >
-              <MenuItem value="male">Male</MenuItem>
-              <MenuItem value="female">Female</MenuItem>
-              <MenuItem value="other">Other</MenuItem>
-            </Select>
-          </FormControl>
-          <Button variant="outlined" type="submit">
-            Register
-          </Button>
-        </form>
-        <small>
-          Already have an account? <Link to="/login">Login Here</Link>
-        </small>
-      </React.Fragment>
+      <div className="App">
+            <h1>Sign</h1>
+            <fieldset>
+                <form onSubmit={handleSubmit} className="flex flex-col">
+                    <label for="name">
+                        Name
+                    </label>
+                    <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        value={name}
+                        onChange={handleChange}
+                        placeholder="Enter First Name"
+                        required
+                    />
+                    <label for="username">Usernames</label>
+                    <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        value={username}
+                        onChange={handleChange}
+                        placeholder="Enter Last Name"
+                        required
+                    />
+                    <label for="email">Enter Emails </label>
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        value={email}
+                        onChange={handleChange}
+                        placeholder="Enter email"
+                        required
+                    />
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        value={password}
+                        onChange={handleChange}
+                        placeholder="Password"
+                        required
+                    />
+                    <label>Select your choice</label>
+                    <select
+                        name="gender"
+                        id="gender"
+                        value={gender}
+                        onChange={handleChange
+                        }
+                    >
+                        <option
+                            value="Male"
+                            disabled
+                            
+                        >
+                        </option>
+                        <option
+                            value="Female"
+                            disabled
+                            
+                        ></option>
+                        <option
+                            value="Other"
+                            disabled
+                          
+                        ></option>
+                      </select>
+                    
+                    <button
+                        type="submit"
+                    >
+                        Submit
+                    </button>
+                </form>
+            </fieldset>
+        </div>
     </>
   );
 }

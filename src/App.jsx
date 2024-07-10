@@ -7,7 +7,7 @@ import IsLoggedOut from "./components/Routing/IsLoggedOut";
 import IsLoggedIn from "./components/Routing/IsLoggedIn";
 import SignupPage from "./Pages/SignupPage";
 import LoginPage from "./Pages/LoginPage";
-
+import CreateActivity from "./Pages/CreateActivity"
 import Theme from "./components/Theme";
 import HomePage from "./Pages/HomePage";
 export const MyContext = createContext();
@@ -38,6 +38,7 @@ function App() {
 
             <Route element={<IsLoggedIn />}>
               <Route path="/" element={<HomePage />} />
+              <Route path="/create" element={<CreateActivity/>}/>
             </Route>
           </Routes>
         </div>
