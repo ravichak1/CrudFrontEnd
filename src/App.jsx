@@ -11,10 +11,10 @@ import CreateActivity from "./Pages/CreateActivity"
 import Theme from "./components/Theme";
 import HomePage from "./Pages/HomePage";
 import LogoutHomePage from "./Pages/LogoutHomePage";
+import SearchUserProfilePage from "./Pages/SearchUserProfilePage";
 export const MyContext = createContext();
 function App() {
   const [theme, setTheme] = useState("dark");
-
   function changeTheme() {
     setTheme((currentTheme) => (currentTheme === "dark" ? "light" : "dark"));
   }
@@ -40,6 +40,7 @@ function App() {
 
             <Route element={<IsLoggedIn />}>
               <Route path="/" element={<HomePage />} />
+              <Route path={`/user/:name`} element={<SearchUserProfilePage />}/>
               <Route path="/create" element={<CreateActivity/>}/>
             </Route>
           </Routes>

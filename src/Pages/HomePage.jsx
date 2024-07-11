@@ -4,8 +4,8 @@ import { useNavigate } from "react-router";
 import { AuthContext } from "./../context/AuthContextWrapper";
 import HomePageSub from "../components/HomePageSub";
 import service from "../service/api";
-import Searchbar from "../components/Searchbar";
 import AllUsers from "../components/AllUsers";
+import SearchUsers from "../components/SearchUsers";
 
 
 function HomePage() {
@@ -31,7 +31,9 @@ function HomePage() {
 
   return (
     <div className="grid grid-cols-4">
-      
+      <div>
+        <SearchUsers/>
+      </div>
       <div className="grid-cols-3">
 
       <HomePageSub />

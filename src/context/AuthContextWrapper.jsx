@@ -9,6 +9,7 @@ function AuthContextWrapper({ children }) {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activities,setActivities] = useState([])
+  const [results, setResults] = useState([]);
 
   const storeToken = (token) => localStorage.setItem("authtoken", token);
   const storeUserId = (userId) => localStorage.setItem("userid", userId);
@@ -26,6 +27,7 @@ function AuthContextWrapper({ children }) {
         return;
       }
 
+  
       console.log(userId);
 
       const response = await service.get(`/user/${userId}`, {
@@ -45,6 +47,15 @@ function AuthContextWrapper({ children }) {
     }
   }, []);
 
+  const handleSearch = async () => {
+    try {
+      const response = await service.get(`/search?name=${query}`);
+      setResults(response.data.users);
+    } catch (error) {
+      console.error("Error searching users:", error);
+    }
+  };
+  
   const fetchActivities = useCallback(async () => {
     try {
         const userId = localStorage.getItem("userid");

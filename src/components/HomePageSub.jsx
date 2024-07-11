@@ -9,7 +9,7 @@ function HomePageSub() {
   const { user,activities } = useContext(AuthContext);
   const data = user.user;
   const workout= user.workoutList
-  console.log(user);
+  console.log(user,activities);
   
   const lastWorkout=user.workoutList.length-1
 
@@ -41,8 +41,8 @@ function HomePageSub() {
       </div>
       
       <h3>{data.name}</h3>
-      <h4>{user.totalWorkouts}</h4>
-        <h4>{lastActivity}</h4>
+        <h4>Total workouts: {activities.length}</h4>
+        <h4></h4>
         <h4>Following: {data.following.length}</h4>
         <h4>Followers: {data.followers.length}</h4>
 
