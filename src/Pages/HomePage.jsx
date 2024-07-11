@@ -12,7 +12,7 @@ function HomePage() {
   const { user, removeToken, removeUserId, disconnect ,activities} =
     useContext(AuthContext);
   const navigate = useNavigate();
-
+  console.log(user)
   const handleDelete = () => {
     service
       .delete(`/user/${user.user._id}`)
