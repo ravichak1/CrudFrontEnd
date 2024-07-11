@@ -43,35 +43,30 @@ function CreateActivity() {
         type,duration,distance,sets,reps,calories
     }=formData
   return (
-    <div>
-        <h1>Create Activity</h1>
-        <form onSubmit={handleSubmit}>
-            <div>
+    <div className='flex flex-col justify-center items-center border-2 w-[max-content] mx-auto p-4 rounded-md'>
+        <h1 className='p-4'>Create Activity</h1>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
+            <div className='flex  gap-4'>
+            <div className='flex flex-col gap-5'>
                 <label htmlFor="type">Title:</label>
-                <input type="text" name="type" id="type" value={type} onChange={handleChange}/>
-            </div>
-            <div>
                 <label htmlFor="duration">Duration(mins):</label>
-                <input type="number" name="duration" id="duration" value={duration} onChange={handleChange}/>
-            </div>
-            <div>
                 <label htmlFor="distance">Distance(km):</label>
-                <input type="number" name="distance" id="distance" value={distance} onChange={handleChange}/>
-            </div>
-            <div>
                 <label htmlFor="sets">Sets:</label>
-                <input type="number" name="sets" id="sets" value={sets} onChange={handleChange}/>
-            </div>
-            <div>
                 <label htmlFor="reps">Reps:</label>
-                <input type="number" name="reps" id="reps" value={reps} onChange={handleChange}/>
-            </div>
-            <div>
                 <label htmlFor="calories">Calories:</label>
-                <input type="number" name="calories" id="calories" value={calories} onChange={handleChange}/>
             </div>
-
-            <button type='submit'>Create</button>
+            <div className='flex flex-col gap-4'>
+                <input type="text" name="type" id="type" value={type} onChange={handleChange} className='border-2'/>
+                <input type="number" name="duration" id="duration" value={duration} onChange={handleChange} className='border-2'/>
+                <input type="number" name="distance" id="distance" value={distance} onChange={handleChange} className='border-2'/>
+                <input type="number" name="sets" id="sets" value={sets} onChange={handleChange} className='border-2'/>
+                <input type="number" name="reps" id="reps" value={reps} onChange={handleChange} className='border-2'/>
+                <input type="number" name="calories" id="calories" value={calories} onChange={handleChange} className='border-2'/>
+            </div>
+            </div>
+          
+            
+            <button type='submit' className="bg-green-500 hover:bg-green-900 text-white p-2 rounded">Create</button>
         </form>
     </div>
   )

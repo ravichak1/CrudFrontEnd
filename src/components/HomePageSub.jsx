@@ -47,8 +47,8 @@ function HomePageSub() {
   const totalWorkouts = user.totalWorkouts;
 
   return (
-    <div className="border-2 w-[max-content] p-4 text-center">
-      <div className="relative h-[90px] w-[90px]">
+    <div className="border-2 w-[100%] p-4 text-center relative rounded-md">
+      <div className="absolute top-[-20%] left-[40%] h-[100px] w-[100px] ">
         <Popup trigger={<button className="absolute bottom-0 right-0">
           <FontAwesomeIcon icon={faCamera} className=""/>
         </button>} position="left center">
@@ -74,8 +74,8 @@ function HomePageSub() {
         />
       </div>
       
-      <div>
-        <h4>{getUser.name}</h4>
+      <div className=" pt-[25%]">
+        <h4>{getUser.name.toUpperCase()}</h4>
         <h4>{totalCalories}</h4>
         <h4>{totalWorkouts}</h4>
         <h4>{getUser.followers.length > 0 ? getUser.followers.length : null}</h4>

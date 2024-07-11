@@ -36,8 +36,7 @@ function LoginPage() {
 
   const { username, password } = formData;
   return (
-    <>
-    <div className="flex justify-center items-center h-[100%]" >
+    <div className="flex justify-center items-center" >
       <div className="w-[50%] flex flex-col gap-8 border-2 p-4 rounded">
       <React.Fragment>
         <h2 className="w-[50%] text-center mx-auto">Log In</h2>
@@ -74,7 +73,6 @@ function LoginPage() {
     
       </div>
       </div>
-    </>
   );
 }
 

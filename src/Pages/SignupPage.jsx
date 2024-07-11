@@ -71,7 +71,7 @@ function SignupPage() {
   } = formData;
 
   return (
-    <div className="flex w-[90%] mx-auto my-12 justify-center items-center border-2 p-4 rounded">
+    <div className="flex w-[90%] mx-auto justify-center items-center border-2 p-4 rounded">
       <div className="flex flex-col gap-4 h-[max-content">
       <React.Fragment>
         <h2 className=" text-2xl w-[max-content] mx-auto">Sign In</h2>

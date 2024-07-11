@@ -17,17 +17,18 @@ function SearchUserProfilePage() {
       console.error("Error searching users:", error);
     }
   };
+  console.log(user)
   
   useEffect(() => {
     handleSearch();  
   }, [name]);
 
   return (
-    <div>
+    <div className='relative'>
   
       {user ? (
         <div>
-            <img src={user.image} alt="" />
+            <img src={user.image} alt="" className='w-[100%]'/>
           <p><strong>Name:</strong> {user.name}</p>
           <p><strong>Email:</strong> {user.email}</p>
         </div>

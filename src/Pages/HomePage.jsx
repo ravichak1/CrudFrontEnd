@@ -13,6 +13,7 @@ function HomePage() {
     useContext(AuthContext);
   const navigate = useNavigate();
   console.log(user)
+  const eachUser=user.user
   const handleDelete = () => {
     service
       .delete(`/user/${user.user._id}`)
@@ -37,32 +38,35 @@ function HomePage() {
       
       <div className="grid grid-cols-4">
 
-        <div className="grid-cols-3">
+        <div className="grid-cols-3 w-[90%] mx-auto">
 
         <HomePageSub />
         </div>
       
-        <div className="col-start-4">
+        {/* <div className="col-start-4">
           <button
             className="bg-red-500 text-white p-2 rounded"
             onClick={handleDelete}
             >
             Delete User
           </button>
-        </div>
+        </div> */}
           
-        <div className="col-start-2 col-end-4 row-start-1">
-          <h2>Activities</h2>
-          <ul>
+        <div className="w-[90%] mx-auto">
+          <h2 className="">Activities by <span className="font-semibold">{eachUser.name.toUpperCase()}</span></h2>
+          <ul className="flex flex-col gap-4">
               {activities.map((activity) => (
-                <li key={activity._id}>
-                    {activity.type} - {activity.duration} mins- {activity.calories} calories
+                <li key={activity._id} className="border-2 p-2 bg-black bg-opacity-10 rounded-md">
+                  <div className="flex gap-4 ">
+                  {activity.type}{activity.duration>0?(<p>{activity.duration}mins</p>):(<p>0 mins</p>)}{activity.calories>0?(<p>{activity.calories}calories</p>):(<>0 calories</>)}
+                  </div>
+                    
                   </li>
               ))}
           </ul>
         </div>
 
-        <div className="col-start-1 col-end-4">
+        <div className="col-start-2 col-end-4 row-start-1">
           <AllUsers/>
         </div>
       </div>

@@ -13,6 +13,8 @@ import HomePage from "./Pages/HomePage";
 import LogoutHomePage from "./Pages/LogoutHomePage";
 import SearchUserProfilePage from "./Pages/SearchUserProfilePage";
 import EditProfilePage from "./Pages/EditProfilePage";
+import EditActivity from "./Pages/EditActivity";
+
 export const MyContext = createContext();
 function App() {
   const [theme, setTheme] = useState("dark");
@@ -44,6 +46,7 @@ function App() {
               <Route path={`/user/:name`} element={<SearchUserProfilePage />}/>
               <Route path="/create" element={<CreateActivity/>}/>
               <Route path="/edit" element={<EditProfilePage/>}/>
+              <Route path="/update/:id" element={<EditActivity/>}/>
             </Route>
           </Routes>
         </div>
