@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import service from "../service/api";
 import { TextField, Button, List, ListItem, ListItemText } from "@mui/material";
+import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 
 function SearchUsers() {
@@ -9,6 +10,9 @@ function SearchUsers() {
   const [results, setResults] = useState([]);
 
   const handleSearch = async () => {
+    if(query===''){
+      return setQuery("")
+    }
     try {
       const response = await service.get(`/search?name=${query}`);
       setResults(response.data.users);
@@ -18,27 +22,30 @@ function SearchUsers() {
   };
 
   return (
-    <div>
-      <TextField
-        label="Search for users"
-        variant="outlined"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        fullWidth
-        sx={{ mb: 2 }}
-      />
-      <Button onClick={handleSearch} variant="contained">
-        Search
-      </Button>
+    <>
+      <div className="flex justify-center items-center gap-4">
+      <Box className="flex items-center gap-4 rounded-full bg-white py-[2%] px-[3%] md:w-[50%] h-[4rem] justify-center sm:w-[100%]">
+          <button onClick={()=>window.location.reload()}>Close</button>
+          <TextField
+            label="Search User"
+            variant="standard"
+            value={query}
+            onChange={(e)=>setQuery(e.target.value)}
+            className="text-red-600 font-bold"
+          />
+          <button onClick={handleSearch}>Search</button>
+        </Box>
+      </div>
       <List>
         {results.map((user) => (
-          <ListItem key={user._id}>
-            <ListItemText primary={user.name} />
+          <div key={user._id} className="flex gap-8 justify-center my-8 ">
+            <img src={user.image} alt="" className="w-[50px] rounded-full h-[50px]"/>
+            <h4>{user.name}</h4>
             <Link to={`/user/${user.username}`}>View Profile</Link>
-          </ListItem>
+          </div>
         ))}
       </List>
-    </div>
+    </>
   );
 }
 

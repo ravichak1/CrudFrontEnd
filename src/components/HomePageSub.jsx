@@ -50,9 +50,9 @@ function HomePageSub() {
     <div className="border-2 w-[max-content] p-4 text-center">
       <div className="relative h-[90px] w-[90px]">
         <Popup trigger={<button className="absolute bottom-0 right-0">
-          <FontAwesomeIcon icon={faCamera} />
+          <FontAwesomeIcon icon={faCamera} className=""/>
         </button>} position="left center">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="absolute">
             <TextField
               type="file"
               variant="outlined"
