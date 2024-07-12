@@ -7,13 +7,12 @@ import service from "../service/api";
 import AllUsers from "../components/AllUsers";
 import SearchUsers from "../components/SearchUsers";
 
-
 function HomePage() {
-  const { user, removeToken, removeUserId, disconnect ,activities} =
+  const { user, removeToken, removeUserId, disconnect, activities } =
     useContext(AuthContext);
   const navigate = useNavigate();
-  console.log(user)
-  const eachUser=user.user
+  console.log(user);
+  const eachUser = user.user;
   const handleDelete = () => {
     service
       .delete(`/user/${user.user._id}`)
@@ -31,18 +30,16 @@ function HomePage() {
   };
 
   return (
-    <div>
+    <div className="sm:flex sm:flex-col min-h-[80vh]">
       <div>
-        <SearchUsers/>
+        <SearchUsers />
       </div>
-      
-      <div className="grid grid-cols-4">
 
-        <div className="grid-cols-3 w-[90%] mx-auto">
-
-        <HomePageSub />
+      <div className="sm:flex sm:flex-col sm:gap-4 md:grid  md:grid-cols-4 sm:mt-8">
+        <div className=" md:grid-cols-3 w-[90%] mx-auto">
+          <HomePageSub />
         </div>
-      
+
         {/* <div className="col-start-4">
           <button
             className="bg-red-500 text-white p-2 rounded"
@@ -51,23 +48,38 @@ function HomePage() {
             Delete User
           </button>
         </div> */}
-          
+
         <div className="w-[90%] mx-auto">
-          <h2 className="">Activities by <span className="font-semibold">{eachUser.name.toUpperCase()}</span></h2>
+          <h2 className="">
+            Activities by{" "}
+            <span className="font-semibold">{eachUser.name.toUpperCase()}</span>
+          </h2>
           <ul className="flex flex-col gap-4">
-              {activities.map((activity) => (
-                <li key={activity._id} className="border-2 p-2 bg-black bg-opacity-10 rounded-md">
-                  <div className="flex gap-4 ">
-                  {activity.type}{activity.duration>0?(<p>{activity.duration}mins</p>):(<p>0 mins</p>)}{activity.calories>0?(<p>{activity.calories}calories</p>):(<>0 calories</>)}
-                  </div>
-                    
-                  </li>
-              ))}
+            {activities.map((activity) => (
+              <li
+                key={activity._id}
+                className="border-2 p-2 bg-black bg-opacity-10 rounded-md"
+              >
+                <div className="flex gap-4 ">
+                  {activity.type}
+                  {activity.duration > 0 ? (
+                    <p>{activity.duration}mins</p>
+                  ) : (
+                    <p>0 mins</p>
+                  )}
+                  {activity.calories > 0 ? (
+                    <p>{activity.calories}calories</p>
+                  ) : (
+                    <>0 calories</>
+                  )}
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div className="col-start-2 col-end-4 row-start-1">
-          <AllUsers/>
+          <AllUsers />
         </div>
       </div>
     </div>

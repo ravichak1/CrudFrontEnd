@@ -1,8 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { AuthContext } from '../context/AuthContextWrapper';
+import React, { useContext, useState, useEffect } from "react";
+import { AuthContext } from "../context/AuthContextWrapper";
 import { TextField, Stack, Button } from "@mui/material";
-import service from './../service/api'; 
-import { useNavigate } from 'react-router';
+import service from "./../service/api";
+import { useNavigate } from "react-router";
 
 function EditProfilePage() {
   const { user, authenticateUser } = useContext(AuthContext);
@@ -14,7 +14,6 @@ function EditProfilePage() {
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
 
-
   useEffect(() => {
     if (getUser) {
       setName(getUser.name || "");
@@ -24,7 +23,7 @@ function EditProfilePage() {
       setWeight(getUser.weight || "");
     }
   }, [getUser]);
-const navigate=useNavigate()
+  const navigate = useNavigate();
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -36,23 +35,24 @@ const navigate=useNavigate()
     formData.append("weight", weight);
 
     try {
-      console.log("hello")
-      const response = await service.put(`/user/${getUser._id}`,formData,{
+      console.log("hello");
+      const response = await service.put(`/user/${getUser._id}`, formData, {
         headers: {
-        'Content-Type': 'multipart/form-data'
-      }});
-      console.log(response)
-      authenticateUser(); 
-        navigate("/")
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log(response);
+      authenticateUser();
+      navigate("/");
     } catch (error) {
       setError("An error occurred. Please try again.");
     }
   }
 
   return (
-    <div>
+    <div className="min-h-[80vh]">
       <h2 className="text-2xl w-[max-content] mx-auto">Edit Profile</h2>
-     
+
       <form onSubmit={handleSubmit} className="flex flex-col justify-center">
         <Stack spacing={2} direction="row" sx={{ marginBottom: 4 }}>
           <TextField

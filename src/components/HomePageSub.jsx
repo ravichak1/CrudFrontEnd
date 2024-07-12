@@ -3,7 +3,11 @@ import { AuthContext } from "../context/AuthContextWrapper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { TextField, Button } from "@mui/material";
 import service from "../service/api";
-import { faCamera } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCamera,
+  faFireFlameSimple,
+  faDumbbell,
+} from "@fortawesome/free-solid-svg-icons";
 import Popup from "reactjs-popup";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
@@ -20,20 +24,22 @@ function HomePageSub() {
     setError("");
 
     const formData = new FormData();
-    formData.append('image', image);
+    formData.append("image", image);
 
     try {
-      const response = await service.put(`/user/image/${getUser._id}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
+      const response = await service.put(
+        `/user/image/${getUser._id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      });
+      );
 
       if (response.status === 200) {
-        
         setImage("");
-        authenticateUser()
-        
+        authenticateUser();
       } else {
         setError("Failed to upload image. Please try again.");
       }
@@ -42,16 +48,25 @@ function HomePageSub() {
       setError("Error uploading image. Please try again.");
     }
   }
-  
+
   const totalCalories = user.totalCaloriesBurnt;
   const totalWorkouts = user.totalWorkouts;
 
   return (
     <div className="border-2 w-[100%] p-4 text-center relative rounded-md">
-      <div className="absolute top-[-20%] left-[40%] h-[100px] w-[100px] ">
-        <Popup trigger={<button className="absolute bottom-0 right-0">
-          <FontAwesomeIcon icon={faCamera} className=""/>
-        </button>} position="left center">
+      <div className="relative h-[100px] w-[100px] mx-auto">
+        <Popup
+          trigger={
+            <button className="absolute bottom-0 right-[10]">
+              <FontAwesomeIcon
+                icon={faCamera}
+                className="text-blue-500"
+                size="2x"
+              />
+            </button>
+          }
+          position="right center"
+        >
           <form onSubmit={handleSubmit} className="absolute">
             <TextField
               type="file"
@@ -70,19 +85,37 @@ function HomePageSub() {
         <img
           src={getUser.image}
           alt="Profile"
-          className="rounded-full w-[80px] h-[80px]"
+          className="rounded-full w-[100%] h-[100%]"
         />
       </div>
-      
-      <div className=" pt-[25%]">
+
+      <div className="mt-4">
         <h4>{getUser.name.toUpperCase()}</h4>
-        <h4>{totalCalories}</h4>
-        <h4>{totalWorkouts}</h4>
-        <h4>{getUser.followers.length > 0 ? getUser.followers.length : null}</h4>
-        <h4>{getUser.following.length > 0 ? getUser.following.length : null}</h4>
+        <h4 className="text-2xl">
+          {totalCalories}
+          <FontAwesomeIcon
+            icon={faFireFlameSimple}
+            className="px-3 text-orange-700"
+          />
+        </h4>
+        <h4 className="text-2xl">
+          {totalWorkouts}{" "}
+          <FontAwesomeIcon icon={faDumbbell} className="text-blue-700" />
+        </h4>
+        <h4>
+          {getUser.followers.length > 0 ? getUser.followers.length : null}
+        </h4>
+        <h4>
+          {getUser.following.length > 0 ? getUser.following.length : null}
+        </h4>
       </div>
-      <div>
-        <Link to={"/edit"}>Edit Profile</Link>
+      <div className="mt-8">
+        <Link
+          to={"/edit"}
+          className="border-2 p-2 rounded-md bg-blue-500 text-white"
+        >
+          Edit Profile
+        </Link>
       </div>
       {error && <div className="text-red-500">{error}</div>}
     </div>

@@ -17,7 +17,7 @@ function LoginPage() {
     const key = event.target.name; // Change from id to name
     setFormData({ ...formData, [key]: value });
   }
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   async function handleSubmit(event) {
     event.preventDefault();
     try {
@@ -27,7 +27,6 @@ function LoginPage() {
         storeToken(response.data.accesstoken);
         storeUserId(response.data.userId);
         await authenticateUser();
-      
       }
     } catch (error) {
       console.log(error);
@@ -36,43 +35,42 @@ function LoginPage() {
 
   const { username, password } = formData;
   return (
-    <div className="flex justify-center items-center" >
+    <div className="flex justify-center items-center min-h-[80vh]">
       <div className="w-[50%] flex flex-col gap-8 border-2 p-4 rounded">
-      <React.Fragment>
-        <h2 className="w-[50%] text-center mx-auto">Log In</h2>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <TextField
-            type="text"
-            variant="outlined"
-            label="Username"
-            name="username"
-            onChange={handleChange}
-            value={username}
-            fullWidth
-            required
-          />
-          <TextField
-            type="password"
-            variant="outlined"
-            label="Password"
-            name="password"
-            onChange={handleChange}
-            value={password}
-            required
-            fullWidth
-            sx={{ mb: 4 }}
-          />
-          <Button variant="outlined" color="secondary" type="submit">
-            Log In
-          </Button>
-        </form>
-        <small>
-          Did have an account? <Link to="/signup">Register Here</Link>
-        </small>
-      </React.Fragment>
-    
+        <React.Fragment>
+          <h2 className="w-[50%] text-center mx-auto">Log In</h2>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <TextField
+              type="text"
+              variant="outlined"
+              label="Username"
+              name="username"
+              onChange={handleChange}
+              value={username}
+              fullWidth
+              required
+            />
+            <TextField
+              type="password"
+              variant="outlined"
+              label="Password"
+              name="password"
+              onChange={handleChange}
+              value={password}
+              required
+              fullWidth
+              sx={{ mb: 4 }}
+            />
+            <Button variant="outlined" color="secondary" type="submit">
+              Log In
+            </Button>
+          </form>
+          <small>
+            Did have an account? <Link to="/signup">Register Here</Link>
+          </small>
+        </React.Fragment>
       </div>
-      </div>
+    </div>
   );
 }
 
