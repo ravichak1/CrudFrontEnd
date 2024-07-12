@@ -121,7 +121,7 @@ function HomePageSub() {
           {getUser.following.length > 0 ? getUser.following.length : null}
         </h4>
       </div>
-      <div className="flex items-center mt-8 gap-4">
+      <div className="flex items-center justify-center mt-8 gap-4">
         <div className="col-start-4">
           <button
             className="bg-red-500 text-white p-2 rounded"
