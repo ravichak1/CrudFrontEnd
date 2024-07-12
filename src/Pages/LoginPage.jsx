@@ -4,6 +4,7 @@ import service from "./../service/api";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./../context/AuthContextWrapper";
+
 function LoginPage() {
   const [formData, setFormData] = useState({
     username: "",
@@ -35,8 +36,8 @@ function LoginPage() {
 
   const { username, password } = formData;
   return (
-    <div className="flex justify-center items-center min-h-[80vh]">
-      <div className="w-[50%] flex flex-col gap-8 border-2 p-4 rounded">
+    <div className="flex justify-center pr-12 items-center min-h-[80vh]">
+      <div className="w-[max-content] flex flex-col gap-8 border-2 p-4 rounded">
         <React.Fragment>
           <h2 className="w-[50%] text-center mx-auto">Log In</h2>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">

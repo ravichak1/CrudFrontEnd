@@ -18,20 +18,9 @@ import EditActivity from "./Pages/EditActivity";
 
 export const MyContext = createContext();
 function App() {
-  const [theme, setTheme] = useState("dark");
-  function changeTheme() {
-    setTheme((currentTheme) => (currentTheme === "dark" ? "light" : "dark"));
-  }
-
-  const contextValues = { theme, changeTheme };
-  const style = {
-    color: theme === "dark" ? "white" : "black",
-    backgroundColor: theme === "dark" ? "black" : "white",
-  };
-
   return (
     <>
-      <MyContext.Provider value={contextValues}>
+      <MyContext.Provider>
         <div className="h-[100vh]">
           <Navbar />
           <Routes>

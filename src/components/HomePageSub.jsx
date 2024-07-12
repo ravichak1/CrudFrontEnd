@@ -48,7 +48,19 @@ function HomePageSub() {
       setError("Error uploading image. Please try again.");
     }
   }
-
+  const handleDelete = () => {
+    service
+      .delete(`/user/${user.user._id}`)
+      .then(() => {
+        // Call removeToken, removeUserId, and disconnect to clear user data and session
+        authenticateUser();
+        disconnect();
+        navigate(`/signup`);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const totalCalories = user.totalCaloriesBurnt;
   const totalWorkouts = user.totalWorkouts;
 
@@ -109,14 +121,25 @@ function HomePageSub() {
           {getUser.following.length > 0 ? getUser.following.length : null}
         </h4>
       </div>
-      <div className="mt-8">
-        <Link
-          to={"/edit"}
-          className="border-2 p-2 rounded-md bg-blue-500 text-white"
-        >
-          Edit Profile
-        </Link>
+      <div className="flex items-center mt-8 gap-4">
+        <div className="col-start-4">
+          <button
+            className="bg-red-500 text-white p-2 rounded"
+            onClick={handleDelete}
+          >
+            Delete User
+          </button>
+        </div>
+        <div className="">
+          <Link
+            to={"/edit"}
+            className="border-2 p-2 rounded-md bg-blue-500 text-white"
+          >
+            Edit Profile
+          </Link>
+        </div>
       </div>
+
       {error && <div className="text-red-500">{error}</div>}
     </div>
   );

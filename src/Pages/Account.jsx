@@ -6,8 +6,7 @@ import HomePageSub from "../components/HomePageSub";
 import service from "../service/api";
 import AllUsers from "../components/AllUsers";
 import SearchUsers from "../components/SearchUsers";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+
 function HomePage() {
   const { user, removeToken, removeUserId, disconnect, activities } =
     useContext(AuthContext);
@@ -61,10 +60,7 @@ function HomePage() {
                 key={activity._id}
                 className="border-2 p-2 bg-black bg-opacity-10 rounded-md"
               >
-                <div className="flex gap-4 relative">
-                  <button className="absolute bottom-0 right-0">
-                    <FontAwesomeIcon icon={faTimes} />
-                  </button>
+                <div className="flex gap-4 ">
                   {activity.type}
                   {activity.duration > 0 ? (
                     <p>{activity.duration}mins</p>

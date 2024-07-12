@@ -17,7 +17,9 @@ function Navbar() {
   };
   return (
     <header className="flex justify-between items-center px-4 h-[10vh]">
-      <h1 className="text-red-700 text-2xl">Fitness Freak</h1>
+      <h1 className="text-red-700 text-2xl">
+        <NavLink to={"/"}>Fitness Freak</NavLink>
+      </h1>
       <nav>
         <section
           className={`md:block md:justify-end mt-4 ${
@@ -25,11 +27,6 @@ function Navbar() {
           }`}
         >
           <ul className="flex gap-[10px] text-xl sm:flex-col sm:absolute sm:right-0 sm:top-[0]  sm:p-4 sm:w-[100%] md:flex-row sm:mb-[5%] md:relative sm:bg-white sm:z-10">
-            <li className=" md:hover:bg-none rounded">
-              <NavLink to="/" onClick={() => setHamBurger((isYes) => !isYes)}>
-                HomePage
-              </NavLink>
-            </li>
             {!isLoggedIn ? (
               <>
                 <li className=" md:hover:bg-none rounded">
@@ -51,14 +48,13 @@ function Navbar() {
               </>
             ) : (
               <>
-                <li
-                  className=" md:hover:bg-none rounded"
-                  onClick={() => setHamBurger((isYes) => !isYes)}
-                >
-                  <button onClick={disconnect}>Logout</button>
-                </li>
                 <li className=" md:hover:bg-none rounded">
-                  <p>Welcome back {user.user.name}</p>
+                  <NavLink
+                    to="/"
+                    onClick={() => setHamBurger((isYes) => !isYes)}
+                  >
+                    HomePage
+                  </NavLink>
                 </li>
                 <li className=" md:hover:bg-none rounded">
                   <NavLink
@@ -67,6 +63,12 @@ function Navbar() {
                   >
                     Create activity
                   </NavLink>
+                </li>
+                <li
+                  className=" md:hover:bg-none rounded"
+                  onClick={() => setHamBurger((isYes) => !isYes)}
+                >
+                  <button onClick={disconnect}>Logout</button>
                 </li>
               </>
             )}
