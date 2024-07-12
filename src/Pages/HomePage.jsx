@@ -62,9 +62,7 @@ function HomePage() {
                 className="border-2 p-2 bg-black bg-opacity-10 rounded-md"
               >
                 <div className="flex gap-4 relative">
-                  <button className="absolute bottom-0 right-0">
-                    <FontAwesomeIcon icon={faTimes} />
-                  </button>
+                  
                   {activity.type}
                   {activity.duration > 0 ? (
                     <p>{activity.duration}mins</p>
