@@ -50,8 +50,8 @@ function EditProfilePage() {
   }
 
   return (
-    <div className="min-h-[80vh]">
-      <h2 className="text-2xl w-[max-content] mx-auto">Edit Profile</h2>
+    <div className="min-h-[80vh] w-[50%] mx-auto mt-4 flex flex-col justify-center">
+      <h2 className="text-2xl w-[max-content] mx-auto mb-4 ">Edit Profile</h2>
 
       <form onSubmit={handleSubmit} className="flex flex-col justify-center">
         <Stack spacing={2} direction="row" sx={{ marginBottom: 4 }}>
